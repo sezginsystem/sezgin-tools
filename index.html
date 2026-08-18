@@ -47,19 +47,6 @@
   .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
   :focus-visible{outline:2px solid var(--accent-cyan); outline-offset:3px;}
 
-  /* ---------- Top notice bar ---------- */
-  .notice{
-    background: var(--bg-raised);
-    border-bottom:1px solid var(--border);
-    font-family: var(--font-mono);
-    font-size:12.5px;
-    color: var(--text-dim);
-    text-align:center;
-    padding:9px 16px;
-    position:relative; z-index:5;
-  }
-  .notice b{color:var(--accent-cyan); font-weight:500;}
-
   /* ---------- Nav ---------- */
   header{
     position:sticky; top:0; z-index:20;
@@ -71,6 +58,7 @@
     display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
     padding:18px 32px;
     max-width:1240px; margin:0 auto;
+    position:relative;
   }
   .logo{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:19px; letter-spacing:-0.01em; cursor:pointer;}
   .logo-mark{
@@ -84,24 +72,24 @@
   .logo span{color:var(--text-faint); font-weight:500;}
 
   .nav-links{display:flex; gap:34px; font-size:14.5px; color:var(--text-dim);}
-  .nav-links a{cursor:pointer;}
+  .nav-links a{cursor:pointer; transition:color .15s ease;}
   .nav-links a:hover{color:var(--text);}
   .nav-links a.active{color:var(--text);}
-  .nav-cta{display:flex; align-items:center; gap:14px;}
-  .btn{
-    font-family:var(--font-body); font-weight:600; font-size:14px;
-    padding:10px 20px; border-radius:8px; cursor:pointer; border:none;
-    transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+
+  /* Hamburger Menü Butonu (Masaüstünde Gizli) */
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:8px;
+    cursor:pointer;
+    color:var(--text);
+    justify-self:end;
+    align-items:center;
+    justify-content:center;
   }
-  .btn-primary{background:var(--gradient); color:#04101c;}
-  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 8px 24px -6px rgba(76,141,255,0.5);}
-  .btn-ghost{color:var(--text-dim); font-weight:500;}
-  .btn-ghost:hover{color:var(--text);}
-  .btn-outline{
-    border:1px solid var(--border); color:var(--text); background:transparent;
-    padding:10px 20px;
-  }
-  .btn-outline:hover{border-color:var(--accent-blue); background:rgba(76,141,255,0.06);}
+  .menu-toggle svg{width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:2;}
 
   /* ---------- Page switching ---------- */
   .page{display:none;}
@@ -142,9 +130,8 @@
   }
   .step-title{font-weight:600; font-size:14.5px; margin-bottom:2px;}
   .step-desc{color:var(--text-faint); font-size:13.5px;}
-  .hero-actions{display:flex; gap:14px;}
 
-  /* ---------- Terminal signature element ---------- */
+  /* ---------- Terminal ---------- */
   .terminal{
     background: linear-gradient(180deg, var(--bg-raised), var(--surface));
     border:1px solid var(--border);
@@ -205,43 +192,7 @@
   .tool-name{font-family:var(--font-body); font-weight:600; font-size:16px; margin-bottom:2px;}
   .tool-desc{font-family:var(--font-mono); font-size:12px; color:var(--text-faint);}
 
-  .term-cta{
-    margin:0 14px 14px; text-align:center;
-    background:var(--gradient); color:#04101c; font-weight:600; font-size:14px;
-    padding:13px; border-radius:9px; cursor:pointer;
-  }
-  .term-choice{
-    display:none; gap:10px;
-    margin:-4px 14px 14px;
-  }
-  .term-choice.open{display:flex;}
-  .term-choice-btn{
-    flex:1; cursor:pointer; text-align:left;
-    display:flex; align-items:center; gap:11px;
-    padding:12px 13px; border-radius:11px;
-    border:1px solid var(--border);
-    background:linear-gradient(180deg, var(--bg-raised), var(--bg));
-    transition:border-color .18s ease, transform .18s ease, background .18s ease;
-  }
-  .term-choice-btn:hover{
-    border-color:var(--accent-blue);
-    background:linear-gradient(180deg, rgba(76,141,255,0.1), var(--bg));
-    transform:translateY(-2px);
-  }
-  .term-choice-icon{
-    width:30px; height:30px; border-radius:8px; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center; font-size:13.5px;
-    background:var(--bg); border:1px solid var(--border); color:var(--accent-cyan);
-    transition:background .18s ease, color .18s ease, border-color .18s ease;
-  }
-  .term-choice-btn:hover .term-choice-icon{background:var(--gradient); color:#04101c; border-color:transparent;}
-  .term-choice-text{display:flex; flex-direction:column; gap:2px; flex:1; min-width:0;}
-  .term-choice-title{font-family:var(--font-body); font-weight:600; font-size:13px; color:var(--text);}
-  .term-choice-sub{font-family:var(--font-mono); font-size:10px; color:var(--text-faint); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .term-choice-arrow{font-family:var(--font-mono); font-size:13px; color:var(--text-faint); transition:transform .18s ease, color .18s ease; flex-shrink:0;}
-  .term-choice-btn:hover .term-choice-arrow{color:var(--accent-cyan); transform:translateX(3px);}
-
-  /* ---------- IT-Bilgi page ---------- */
+  /* ---------- IT-Bilgi & Donanım Ortak ---------- */
   .itbilgi-hero{
     padding:64px 0 20px; text-align:center; position:relative; z-index:1;
   }
@@ -265,10 +216,6 @@
   }
   .info-card:hover{border-color:var(--accent-blue); transform:translateY(-3px);}
   .info-card.wide{grid-column:span 2;}
-  .info-photo{
-    width:100%; height:170px; object-fit:cover; display:block;
-    background:var(--bg); border-bottom:1px solid var(--border);
-  }
   .info-illust{
     width:100%; height:170px; display:block;
     background:var(--bg); border-bottom:1px solid var(--border);
@@ -288,7 +235,7 @@
     background:var(--bg); border:1px solid var(--border); padding:3px 8px; border-radius:6px;
   }
 
-  /* ---------- Program İndir page ---------- */
+  /* ---------- Program İndir ---------- */
   .program-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
@@ -327,20 +274,48 @@
   }
   .program-btn:hover{transform:translateY(-1px); box-shadow:0 8px 24px -6px rgba(76,141,255,0.5);}
 
+  /* ---------- Mobil Responsive Ayarları ---------- */
   @media (max-width:980px){
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 20px;
+    }
+    .menu-toggle{
+      display:flex; /* Mobilde üç çizgi açılır */
+    }
+    .nav-links{
+      display:none; /* Mobilde varsayılan olarak gizlenir */
+      position:absolute;
+      top:100%;
+      left:0;
+      width:100%;
+      background:rgba(16, 22, 42, 0.98);
+      backdrop-filter:blur(20px);
+      flex-direction:column;
+      padding:20px;
+      gap:16px;
+      border-bottom:1px solid var(--border);
+      box-shadow:0 15px 30px rgba(0,0,0,0.5);
+    }
+    .nav-links.open{
+      display:flex !important; /* Hamburger tıklandığında açılır */
+    }
+    .nav-links a{
+      font-size:16px;
+      padding:8px 0;
+    }
+    
     .hero{grid-template-columns:1fr; padding-top:50px;}
     h1{font-size:38px;}
-    .nav-links{
-        display:flex !important;
-        gap:20px;
-        justify-content:center;
-        flex-wrap:nowrap;
-    }
     .info-grid{grid-template-columns:repeat(2,1fr);}
     .info-card.wide{grid-column:span 2;}
     .program-grid{grid-template-columns:repeat(2,1fr);}
   }
+
   @media (max-width:560px){
+    .wrap{padding:0 20px;}
     .info-grid{grid-template-columns:1fr;}
     .info-card.wide{grid-column:span 1;}
     .term-stats{grid-template-columns:1fr 1fr;}
@@ -350,63 +325,6 @@
   footer{
     border-top:1px solid var(--border); padding:40px 0; text-align:center;
     color:var(--text-faint); font-size:13px; position:relative; z-index:1;
-  }
-
-  /* ---------- Auth modal ---------- */
-  .auth-overlay{
-    position:fixed; inset:0; z-index:100;
-    background:rgba(6,9,18,0.72);
-    backdrop-filter:blur(6px);
-    display:flex; align-items:center; justify-content:center;
-    padding:20px;
-    opacity:0; pointer-events:none;
-    transition:opacity .2s ease;
-  }
-  .auth-overlay.open{opacity:1; pointer-events:auto;}
-  .auth-modal{
-    width:100%; max-width:380px;
-    background:linear-gradient(180deg, var(--bg-raised), var(--surface));
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:8px 26px 26px;
-    box-shadow:0 30px 80px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.02);
-    transform:translateY(10px);
-    transition:transform .2s ease;
-  }
-  .auth-overlay.open .auth-modal{transform:translateY(0);}
-  .auth-tabs{
-    display:flex; align-items:center; gap:6px;
-    padding:16px 0 18px; border-bottom:1px solid var(--border); margin-bottom:20px;
-  }
-  .auth-tab{
-    flex:1; background:none; border:none; cursor:pointer;
-    font-family:var(--font-body); font-weight:600; font-size:14px; color:var(--text-faint);
-    padding:9px 0; border-radius:8px; transition:color .15s ease, background .15s ease;
-  }
-  .auth-tab.active{color:var(--text); background:rgba(76,141,255,0.1);}
-  .auth-tab:hover{color:var(--text);}
-  .auth-close{
-    background:none; border:none; color:var(--text-faint); font-size:14px; cursor:pointer;
-    padding:8px 9px; border-radius:8px; line-height:1;
-  }
-  .auth-close:hover{color:var(--text); background:rgba(255,255,255,0.05);}
-  .auth-form{display:flex; flex-direction:column; gap:14px;}
-  .auth-form label{
-    display:flex; flex-direction:column; gap:7px;
-    font-family:var(--font-mono); font-size:11px; color:var(--text-faint);
-    text-transform:uppercase; letter-spacing:0.05em;
-  }
-  .auth-form input{
-    font-family:var(--font-body); font-size:14px; color:var(--text);
-    background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:11px 12px;
-  }
-  .auth-form input:focus{border-color:var(--accent-blue); outline:none;}
-  .auth-submit{width:100%; margin-top:2px; text-align:center; border:none;}
-  .auth-note{margin-top:16px; text-align:center; font-family:var(--font-mono); font-size:11px; color:var(--text-faint); transition:color .2s ease;}
-
-  @media (prefers-reduced-motion:reduce){
-    .cursor{animation:none;}
-    *{transition:none !important;}
   }
 </style>
 </head>
@@ -435,7 +353,17 @@
       </div>
       Sezgin<span>Tools</span>
     </div>
-    <div class="nav-links">
+
+    <!-- Mobil Menü Butonu (Üç Çizgi) -->
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menüyü Aç/Kapat">
+      <svg viewBox="0 0 24 24">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="nav-links" id="nav-links">
       <a onclick="showPage('home')" id="nav-home">Anasayfa</a>
       <a onclick="showPage('itbilgi')" id="nav-itbilgi">IT-Bilgi</a>
       <a onclick="showPage('donanim')" id="nav-donanim">Donanım Bilgi</a>
@@ -510,7 +438,6 @@
   </section>
 
   <div class="info-grid">
-
     <div class="info-card">
       <div class="info-illust">
         <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
@@ -671,202 +598,6 @@
         <div class="info-spec"><span>L2</span><span>Çoklu port</span></div>
       </div>
     </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="rtbody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#2a3757"/><stop offset="1" stop-color="#171f3a"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="200" cy="70" r="110" fill="#4c8dff" opacity="0.08"/>
-          <g transform="translate(105,110)">
-            <rect x="0" y="0" width="190" height="46" rx="10" fill="url(#rtbody)" stroke="#37476e" stroke-width="1.5"/>
-            <circle cx="20" cy="23" r="4" fill="#38e2c8"/>
-            <g fill="#3a4a72"><rect x="40" y="18" width="10" height="10" rx="2"/><rect x="56" y="18" width="10" height="10" rx="2"/>
-            <rect x="72" y="18" width="10" height="10" rx="2"/><rect x="88" y="18" width="10" height="10" rx="2"/></g>
-            <text x="105" y="30" font-family="JetBrains Mono, monospace" font-size="11" fill="#8891ab">WAN · LAN</text>
-          </g>
-          <g stroke="#4c8dff" stroke-width="6" stroke-linecap="round">
-            <line x1="150" y1="112" x2="130" y2="55"/>
-            <line x1="200" y1="112" x2="200" y2="50"/>
-            <line x1="250" y1="112" x2="270" y2="55"/>
-          </g>
-          <g fill="#4c8dff"><circle cx="130" cy="52" r="5"/><circle cx="200" cy="47" r="5"/><circle cx="270" cy="52" r="5"/></g>
-          <path d="M110 90 Q200 30 290 90" stroke="#38e2c8" stroke-width="2" fill="none" opacity="0.5"/>
-          <path d="M130 95 Q200 55 270 95" stroke="#38e2c8" stroke-width="2" fill="none" opacity="0.35"/>
-          <text x="40" y="200" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">ROUTER · L3</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Aktif cihaz</span>
-        <div class="info-name">Router</div>
-        <div class="info-desc">Farklı ağlar arasında veriyi yönlendirir. Örneğin ev ağınızı internete bağlayan cihazdır.</div>
-        <div class="info-spec"><span>L3</span><span>IP Routing</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="mdbody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#2a3757"/><stop offset="1" stop-color="#171f3a"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="200" cy="80" r="110" fill="#8b7bff" opacity="0.08"/>
-          <g transform="translate(90,80)">
-            <rect x="0" y="0" width="220" height="70" rx="12" fill="url(#mdbody)" stroke="#37476e" stroke-width="1.5"/>
-            <rect x="14" y="14" width="192" height="8" rx="4" fill="#0d1428"/>
-            <circle cx="20" cy="46" r="5" fill="#38e2c8"/>
-            <circle cx="38" cy="46" r="5" fill="#8b7bff"/>
-            <circle cx="56" cy="46" r="5" fill="#565f7a"/>
-            <g fill="#3a4a72"><rect x="150" y="36" width="12" height="20" rx="2"/><rect x="168" y="36" width="12" height="20" rx="2"/>
-            <rect x="186" y="36" width="12" height="20" rx="2"/></g>
-            <text x="86" y="46" font-family="JetBrains Mono, monospace" font-size="11" fill="#8891ab">MODEM</text>
-          </g>
-          <text x="40" y="200" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">MODEM · ISP</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Aktif cihaz</span>
-        <div class="info-name">Modem</div>
-        <div class="info-desc">Servis sağlayıcıdan gelen sinyali ağın anlayabileceği veriye çevirir. İnternetin eve giriş noktasıdır.</div>
-        <div class="info-spec"><span>ISP bağlantısı</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="apglow" cx="0.5" cy="0.5" r="0.5">
-              <stop offset="0" stop-color="#38e2c8" stop-opacity="0.35"/><stop offset="1" stop-color="#38e2c8" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <rect x="0" y="0" width="400" height="14" fill="#161e36"/>
-          <circle cx="200" cy="14" r="90" fill="url(#apglow)"/>
-          <path d="M140 14 A60 60 0 0 1 260 14" stroke="#38e2c8" stroke-width="3" fill="none" opacity="0.85"/>
-          <path d="M115 14 A85 85 0 0 1 285 14" stroke="#38e2c8" stroke-width="3" fill="none" opacity="0.5"/>
-          <path d="M90 14 A110 110 0 0 1 310 14" stroke="#38e2c8" stroke-width="3" fill="none" opacity="0.25"/>
-          <g transform="translate(160,10)">
-            <ellipse cx="40" cy="6" rx="42" ry="10" fill="#26314f" stroke="#3a4a72" stroke-width="1.5"/>
-            <rect x="34" y="6" width="12" height="18" fill="#26314f"/>
-            <circle cx="40" cy="6" r="6" fill="#38e2c8"/>
-          </g>
-          <text x="40" y="200" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">ACCESS POINT · Wi-Fi</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Aktif cihaz</span>
-        <div class="info-name">Access Point</div>
-        <div class="info-desc">Kablolu ağı kablosuz sinyale çevirerek Wi-Fi yayını sağlar. Geniş alanlarda kapsama arttırmak için kullanılır.</div>
-        <div class="info-spec"><span>Wi-Fi</span><span>2.4/5 GHz</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="fwshield" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ab9bff"/><stop offset="1" stop-color="#6a4fd6"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="200" cy="105" r="100" fill="#8b7bff" opacity="0.08"/>
-          <path d="M200 30 L250 48 V100 C250 140 228 165 200 178 C172 165 150 140 150 100 V48 Z" fill="url(#fwshield)"/>
-          <path d="M178 105 L194 121 L224 87" stroke="#0d1428" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <g stroke="#3a4a72" stroke-width="2" opacity="0.6">
-            <line x1="90" y1="60" x2="130" y2="60"/><line x1="90" y1="80" x2="140" y2="80"/>
-            <line x1="270" y1="60" x2="310" y2="60"/><line x1="260" y1="80" x2="310" y2="80"/>
-          </g>
-          <text x="40" y="200" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">FIREWALL · Filtre</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Güvenlik</span>
-        <div class="info-name">Firewall</div>
-        <div class="info-desc">Ağa giren ve çıkan trafiği kurallara göre denetler, izinsiz erişimi engeller. Ağın güvenlik kapısıdır.</div>
-        <div class="info-spec"><span>Trafik filtresi</span></div>
-      </div>
-    </div>
-
-    <div class="info-card wide">
-      <div class="info-illust">
-        <svg viewBox="0 0 780 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="cswbody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#2e3d63"/><stop offset="1" stop-color="#161e36"/>
-            </linearGradient>
-          </defs>
-          <rect width="780" height="230" fill="#0d1428"/>
-          <circle cx="390" cy="90" r="260" fill="#8b7bff" opacity="0.07"/>
-          <g transform="translate(40,38)">
-            <rect x="0" y="0" width="700" height="46" rx="8" fill="url(#cswbody)" stroke="#4c8dff" stroke-width="1.5"/>
-            <text x="12" y="18" font-family="JetBrains Mono, monospace" font-size="10" fill="#5b6892">UPLINK MODULE A</text>
-            <g><rect x="16" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="33" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="50" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="67" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="84" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="101" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="118" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="135" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="152" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="169" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="186" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="203" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="220" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="237" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="254" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="271" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="288" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="305" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="322" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="339" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="356" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="373" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="390" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="407" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="424" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="441" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="458" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="475" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="492" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="509" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="526" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="543" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="560" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="577" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="594" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="611" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="628" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="645" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="662" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="679" y="24" width="10" height="14" rx="2" fill="#4c8dff"/></g>
-            <circle cx="684" cy="31" r="5" fill="#38e2c8"/>
-          </g>
-          <g transform="translate(40,100)">
-            <rect x="0" y="0" width="700" height="46" rx="8" fill="url(#cswbody)" stroke="#4c8dff" stroke-width="1.5"/>
-            <text x="12" y="18" font-family="JetBrains Mono, monospace" font-size="10" fill="#5b6892">UPLINK MODULE B</text>
-            <g><rect x="16" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="33" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="50" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="67" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="84" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="101" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="118" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="135" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="152" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="169" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="186" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="203" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="220" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="237" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="254" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="271" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="288" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="305" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="322" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="339" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="356" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="373" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="390" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="407" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="424" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="441" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="458" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="475" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="492" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="509" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="526" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="543" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="560" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="577" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="594" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="611" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="628" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="645" y="24" width="10" height="14" rx="2" fill="#4c8dff"/><rect x="662" y="24" width="10" height="14" rx="2" fill="#8b7bff"/><rect x="679" y="24" width="10" height="14" rx="2" fill="#4c8dff"/></g>
-            <circle cx="684" cy="31" r="5" fill="#38e2c8"/>
-          </g>
-          <text x="40" y="200" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">OMURGA SWITCH · Core</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Merkezi anahtarlama</span>
-        <div class="info-name">Omurga Switch</div>
-        <div class="info-desc">Ağın kalbi. Kat/bina switch'lerini birbirine bağlayan, yüksek kapasiteli ve yüksek hızlı merkezi anahtarlama cihazıdır. Genelde sistem odasında bulunur ve tüm ağ trafiği buradan geçer.</div>
-        <div class="info-spec"><span>Core Layer</span><span>Yüksek Kapasite</span><span>10-100 Gbps</span></div>
-      </div>
-    </div>
-
-    <div class="info-card wide">
-      <div class="info-illust">
-        <svg viewBox="0 0 780 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="rackbody" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#26314f"/><stop offset="1" stop-color="#141b32"/>
-            </linearGradient>
-          </defs>
-          <rect width="780" height="230" fill="#0d1428"/>
-          <circle cx="390" cy="90" r="260" fill="#4c8dff" opacity="0.06"/>
-          <g transform="translate(60,25)">
-            <rect x="0" y="0" width="150" height="170" rx="8" fill="url(#rackbody)" stroke="#37476e" stroke-width="1.5"/>
-            <g transform="translate(0,12)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,34)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,56)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,78)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,100)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,122)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,144)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g>
-          </g>
-          <g transform="translate(230,25)">
-            <rect x="0" y="0" width="150" height="170" rx="8" fill="url(#rackbody)" stroke="#37476e" stroke-width="1.5"/>
-            <g transform="translate(0,12)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,34)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,56)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,78)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,100)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,122)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,144)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g>
-          </g>
-          <g transform="translate(400,25)">
-            <rect x="0" y="0" width="150" height="170" rx="8" fill="url(#rackbody)" stroke="#37476e" stroke-width="1.5"/>
-            <g transform="translate(0,12)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,34)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,56)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,78)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,100)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,122)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,144)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g>
-          </g>
-          <g transform="translate(570,25)">
-            <rect x="0" y="0" width="150" height="170" rx="8" fill="url(#rackbody)" stroke="#37476e" stroke-width="1.5"/>
-            <g transform="translate(0,12)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,34)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,56)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,78)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,100)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,122)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g><g transform="translate(0,144)"><rect x="10" y="0" width="130" height="16" rx="3" fill="#0d1428"/><circle cx="22" cy="8" r="2.5" fill="#38e2c8"/><circle cx="34" cy="8" r="2.5" fill="#4c8dff"/></g>
-          </g>
-          <path d="M0 0 L780 0" stroke="#38e2c8" stroke-width="1" opacity="0.15"/>
-          <text x="40" y="215" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">SİSTEM ODASI · Rack</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Fiziksel altyapı</span>
-        <div class="info-name">Sistem Odası</div>
-        <div class="info-desc">Sunucuların, switch'lerin ve ağ ekipmanlarının barındığı, sıcaklık ve nem kontrolü yapılan, erişimi kısıtlı özel alan. Kesintisiz güç kaynağı (UPS) ve yangın söndürme sistemleriyle korunur.</div>
-        <div class="info-spec"><span>İklimlendirme</span><span>UPS</span><span>Erişim Kontrolü</span></div>
-      </div>
-    </div>
-
   </div>
 </main>
 
@@ -879,7 +610,6 @@
   </section>
 
   <div class="info-grid">
-
     <div class="info-card">
       <div class="info-illust">
         <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
@@ -912,230 +642,6 @@
         <div class="info-spec"><span>6-16 Çekirdek</span><span>AM5 / LGA1700</span><span>3-5.5 GHz</span></div>
       </div>
     </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="dhgpu" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#233252"/><stop offset="1" stop-color="#141b32"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="330" cy="60" r="90" fill="#38e2c8" opacity="0.08"/>
-          <g transform="translate(70,33)">
-            <rect x="0" y="0" width="260" height="100" rx="10" fill="url(#dhgpu)" stroke="#37476e" stroke-width="1.5"/>
-            <circle cx="65" cy="50" r="34" fill="#0d1428" stroke="#38e2c8" stroke-width="2"/>
-            <circle cx="65" cy="50" r="34" fill="none" stroke="#38e2c8" stroke-width="1" stroke-dasharray="2 6"/>
-            <circle cx="65" cy="50" r="6" fill="#38e2c8"/>
-            <circle cx="185" cy="50" r="34" fill="#0d1428" stroke="#4c8dff" stroke-width="2"/>
-            <circle cx="185" cy="50" r="34" fill="none" stroke="#4c8dff" stroke-width="1" stroke-dasharray="2 6"/>
-            <circle cx="185" cy="50" r="6" fill="#4c8dff"/>
-          </g>
-          <g transform="translate(90,133)">
-            <rect x="0" y="0" width="200" height="14" rx="3" fill="#1c2440" stroke="#37476e"/>
-            <g fill="#e8b64a"><rect x="6" y="4" width="4" height="6"/><rect x="14" y="4" width="4" height="6"/><rect x="22" y="4" width="4" height="6"/><rect x="30" y="4" width="4" height="6"/><rect x="38" y="4" width="4" height="6"/><rect x="46" y="4" width="4" height="6"/><rect x="54" y="4" width="4" height="6"/><rect x="62" y="4" width="4" height="6"/><rect x="70" y="4" width="4" height="6"/><rect x="78" y="4" width="4" height="6"/><rect x="86" y="4" width="4" height="6"/><rect x="94" y="4" width="4" height="6"/></g>
-          </g>
-          <text x="40" y="205" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">EKRAN KARTI · GPU</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Görüntü işleme</span>
-        <div class="info-name">Ekran Kartı (GPU)</div>
-        <div class="info-desc">Görüntü işleme ve oyun performansının kalbi. 3B render, video düzenleme ve yapay zeka işlemlerinde CPU'nun yükünü devralır.</div>
-        <div class="info-spec"><span>8-24 GB VRAM</span><span>150-450W</span><span>Ray Tracing</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="dhram" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#5c9bff"/><stop offset="1" stop-color="#2f5fc9"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="330" cy="60" r="90" fill="#4c8dff" opacity="0.08"/>
-          <g transform="translate(90,15)">
-            <g transform="translate(0,0)"><rect x="0" y="0" width="40" height="150" rx="4" fill="#1c2440" stroke="#37476e" stroke-width="1.5"/><rect x="6" y="14" width="28" height="106" rx="2" fill="url(#dhram)"/><rect x="0" y="0" width="40" height="12" fill="#0d1428"/></g>
-            <g transform="translate(60,0)"><rect x="0" y="0" width="40" height="150" rx="4" fill="#1c2440" stroke="#37476e" stroke-width="1.5"/><rect x="6" y="14" width="28" height="106" rx="2" fill="url(#dhram)"/><rect x="0" y="0" width="40" height="12" fill="#0d1428"/></g>
-            <g transform="translate(120,0)"><rect x="0" y="0" width="40" height="150" rx="4" fill="#1c2440" stroke="#37476e" stroke-width="1.5"/><rect x="6" y="14" width="28" height="106" rx="2" fill="url(#dhram)"/><rect x="0" y="0" width="40" height="12" fill="#0d1428"/></g>
-            <g transform="translate(180,0)"><rect x="0" y="0" width="40" height="150" rx="4" fill="#1c2440" stroke="#37476e" stroke-width="1.5"/><rect x="6" y="14" width="28" height="106" rx="2" fill="url(#dhram)"/><rect x="0" y="0" width="40" height="12" fill="#0d1428"/></g>
-          </g>
-          <text x="40" y="205" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">BELLEK · RAM</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Geçici bellek</span>
-        <div class="info-name">RAM</div>
-        <div class="info-desc">İşlemcinin anlık olarak kullandığı geçici bellek. Kapasite ve hız arttıkça çoklu görevlerde ve büyük uygulamalarda akıcılık artar.</div>
-        <div class="info-spec"><span>DDR4 / DDR5</span><span>8-64 GB</span><span>3200-6000 MHz</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="dhmobo" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#1c2440"/><stop offset="1" stop-color="#141b32"/>
-            </linearGradient>
-            <linearGradient id="dhcpu2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#8b7bff"/><stop offset="1" stop-color="#4c8dff"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="330" cy="60" r="90" fill="#4c8dff" opacity="0.08"/>
-          <g transform="translate(50,47) scale(0.4545)">
-            <rect x="0" y="0" width="660" height="190" rx="10" fill="url(#dhmobo)" stroke="#37476e" stroke-width="1.5"/>
-            <rect x="0" y="20" width="14" height="100" fill="#1c2440"/>
-            <g fill="#c3cadb"><rect x="2" y="30" width="10" height="8"/><rect x="2" y="45" width="10" height="8"/><rect x="2" y="60" width="10" height="8"/><rect x="2" y="75" width="10" height="8"/><rect x="2" y="90" width="10" height="8"/></g>
-            <rect x="40" y="30" width="90" height="90" rx="6" fill="#0d1428" stroke="#8b7bff" stroke-width="2"/>
-            <rect x="52" y="42" width="66" height="66" rx="4" fill="url(#dhcpu2)"/>
-            <g fill="#38e2c8" opacity="0.85">
-              <rect x="150" y="30" width="10" height="90" rx="2"/><rect x="166" y="30" width="10" height="90" rx="2"/><rect x="182" y="30" width="10" height="90" rx="2"/><rect x="198" y="30" width="10" height="90" rx="2"/>
-            </g>
-            <rect x="260" y="60" width="50" height="50" rx="6" fill="#233252" stroke="#4c8dff" stroke-width="1.5"/>
-            <g fill="#e8b64a"><rect x="40" y="150" width="180" height="12" rx="2"/><rect x="40" y="170" width="120" height="12" rx="2"/></g>
-            <rect x="340" y="140" width="90" height="16" rx="3" fill="#233252" stroke="#38e2c8" stroke-width="1"/>
-            <g fill="#4c8dff"><rect x="450" y="150" width="16" height="8"/><rect x="470" y="150" width="16" height="8"/><rect x="490" y="150" width="16" height="8"/><rect x="510" y="150" width="16" height="8"/></g>
-            <rect x="450" y="30" width="180" height="14" rx="2" fill="#1c2440" stroke="#37476e"/>
-            <rect x="450" y="50" width="180" height="14" rx="2" fill="#1c2440" stroke="#37476e"/>
-          </g>
-          <text x="40" y="205" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">ANAKART · Motherboard</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Ana devre kartı</span>
-        <div class="info-name">Anakart</div>
-        <div class="info-desc">Tüm bileşenleri birbirine bağlayan ana devre kartı. İşlemci soketi, bellek yuvaları, genişletme slotları ve bağlantı noktalarını barındırır — sistemin iskeletidir.</div>
-        <div class="info-spec"><span>Soket Uyumu</span><span>PCIe 5.0</span><span>M.2 Slotları</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="dhssd" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#5ff0d8"/><stop offset="1" stop-color="#1fa88f"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="330" cy="60" r="90" fill="#38e2c8" opacity="0.08"/>
-          <g transform="translate(70,65)">
-            <rect x="0" y="0" width="260" height="50" rx="6" fill="url(#dhssd)"/>
-            <rect x="10" y="10" width="40" height="30" rx="3" fill="#0d1428" opacity="0.35"/>
-            <rect x="60" y="10" width="60" height="30" rx="3" fill="#0d1428" opacity="0.35"/>
-            <rect x="130" y="10" width="30" height="30" rx="3" fill="#0d1428" opacity="0.35"/>
-            <rect x="0" y="50" width="30" height="10" fill="#141b32"/>
-            <path d="M230 0 L260 0 L260 20 L245 20 Z" fill="#0d1428"/>
-          </g>
-          <text x="40" y="205" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">DEPOLAMA · NVMe SSD</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Kalıcı depolama</span>
-        <div class="info-name">SSD / Depolama</div>
-        <div class="info-desc">Verilerin kalıcı olarak saklandığı birim. NVMe SSD'ler, geleneksel disklere göre çok daha hızlı açılış ve dosya aktarım süresi sağlar.</div>
-        <div class="info-spec"><span>NVMe / SATA</span><span>500GB-4TB</span><span>3500-7000 MB/s</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="dhpsu" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#26314f"/><stop offset="1" stop-color="#141b32"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="330" cy="60" r="90" fill="#8b7bff" opacity="0.08"/>
-          <g transform="translate(125,5)">
-            <rect x="0" y="0" width="150" height="130" rx="8" fill="url(#dhpsu)" stroke="#37476e" stroke-width="1.5"/>
-            <circle cx="75" cy="50" r="34" fill="#0d1428" stroke="#8b7bff" stroke-width="2"/>
-            <circle cx="75" cy="50" r="34" fill="none" stroke="#8b7bff" stroke-width="1" stroke-dasharray="2 6"/>
-            <text x="75" y="100" font-family="JetBrains Mono, monospace" font-size="9" fill="#8891ab" text-anchor="middle">80+ GOLD</text>
-            <g stroke="#e8b64a" stroke-width="4" fill="none" stroke-linecap="round">
-              <path d="M20 130 C20 150, 10 150, 10 165"/>
-              <path d="M50 130 C50 155, 40 155, 40 172"/>
-              <path d="M80 130 C80 158, 70 158, 70 178"/>
-            </g>
-          </g>
-          <text x="40" y="205" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">GÜÇ KAYNAĞI · PSU</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Enerji birimi</span>
-        <div class="info-name">Güç Kaynağı (PSU)</div>
-        <div class="info-desc">Sistemdeki tüm bileşenlere güç sağlayan birim. Verimlilik sertifikası ve watt gücü, sistemin kararlılığını ve elektrik tüketimini belirler.</div>
-        <div class="info-spec"><span>80+ Verimlilik</span><span>450-1000W</span><span>Modüler Kablo</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="dhcool" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#5ff0d8"/><stop offset="1" stop-color="#2f5fc9"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="330" cy="60" r="90" fill="#38e2c8" opacity="0.08"/>
-          <g transform="translate(156,5)">
-            <g fill="#c3cadb" opacity="0.9">
-              <rect x="-6" y="10" width="4" height="150"/><rect x="6" y="10" width="4" height="150"/><rect x="18" y="10" width="4" height="150"/><rect x="30" y="10" width="4" height="150"/><rect x="42" y="10" width="4" height="150"/><rect x="54" y="10" width="4" height="150"/><rect x="66" y="10" width="4" height="150"/><rect x="78" y="10" width="4" height="150"/><rect x="90" y="10" width="4" height="150"/>
-            </g>
-            <circle cx="45" cy="85" r="50" fill="#0d1428" stroke="#38e2c8" stroke-width="2.5"/>
-            <g stroke="#38e2c8" stroke-width="3" fill="none" stroke-linecap="round">
-              <path d="M45 85 L45 45"/><path d="M45 85 L78 62"/><path d="M45 85 L78 108"/><path d="M45 85 L45 125"/><path d="M45 85 L12 108"/><path d="M45 85 L12 62"/>
-            </g>
-            <circle cx="45" cy="85" r="10" fill="url(#dhcool)"/>
-          </g>
-          <text x="40" y="205" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">SOĞUTUCU · CPU Fan</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Isı yönetimi</span>
-        <div class="info-name">Soğutucu</div>
-        <div class="info-desc">İşlemcinin ürettiği ısıyı uzaklaştırarak performans düşüşünü (thermal throttling) önler. Hava soğutmalı veya sıvı soğutmalı olabilir.</div>
-        <div class="info-spec"><span>Hava / Sıvı</span><span>TDP Desteği</span><span>RGB Fan</span></div>
-      </div>
-    </div>
-
-    <div class="info-card">
-      <div class="info-illust">
-        <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="dhcase" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#233252"/><stop offset="1" stop-color="#141b32"/>
-            </linearGradient>
-          </defs>
-          <rect width="400" height="230" fill="#0d1428"/>
-          <circle cx="330" cy="60" r="90" fill="#4c8dff" opacity="0.08"/>
-          <g transform="translate(150,5)">
-            <rect x="0" y="0" width="100" height="170" rx="8" fill="url(#dhcase)" stroke="#37476e" stroke-width="1.5"/>
-            <rect x="10" y="14" width="80" height="60" rx="4" fill="#0d1428" stroke="#4c8dff" stroke-width="1"/>
-            <circle cx="50" cy="44" r="22" fill="none" stroke="#4c8dff" stroke-width="1.5" stroke-dasharray="2 5"/>
-            <rect x="10" y="90" width="80" height="10" rx="2" fill="#0d1428"/>
-            <rect x="10" y="106" width="80" height="10" rx="2" fill="#0d1428"/>
-            <circle cx="50" cy="150" r="6" fill="#38e2c8"/>
-            <rect x="42" y="164" width="16" height="4" fill="#8891ab"/>
-          </g>
-          <text x="40" y="205" font-family="JetBrains Mono, monospace" font-size="15" fill="#8891ab" letter-spacing="2">KASA · PC Case</text>
-        </svg>
-      </div>
-      <div class="info-body">
-        <span class="info-tag">Gövde</span>
-        <div class="info-name">Bilgisayar Kasası</div>
-        <div class="info-desc">Tüm donanımı bir arada tutan, hava akışını ve kablo düzenini sağlayan gövde. Boyutu, anakart uyumluluğunu ve soğutma kapasitesini etkiler.</div>
-        <div class="info-spec"><span>ATX / mATX / ITX</span><span>Hava Akışı</span><span>Kablo Yönetimi</span></div>
-      </div>
-    </div>
-
   </div>
 </main>
 
@@ -1148,7 +654,6 @@
   </section>
 
   <div class="program-grid">
-
     <div class="program-card">
       <div class="program-icon">
         <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -1166,100 +671,38 @@
       <span class="program-size">Ücretsiz</span>
       <a class="program-btn" href="https://www.google.com/chrome/" target="_blank" rel="noopener">İndir →</a>
     </div>
-
-    <div class="program-card">
-      <div class="program-icon">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <rect x="3" y="3" width="42" height="42" rx="10" fill="#EF4A45"/>
-          <rect x="12" y="12" width="24" height="17" rx="2.5" fill="#fff"/>
-          <rect x="14.5" y="14.5" width="19" height="10.5" fill="#EF4A45" opacity="0.85"/>
-          <path d="M20 33h8l-1.5 6h-5z" fill="#fff"/>
-          <rect x="15" y="39" width="18" height="2.6" rx="1.3" fill="#fff"/>
-        </svg>
-      </div>
-      <div class="program-name">AnyDesk</div>
-      <div class="program-desc">Uzak masaüstü bağlantısı ile bilgisayarlara her yerden erişim.</div>
-      <span class="program-size">Ücretsiz</span>
-      <a class="program-btn" href="https://anydesk.com/en/downloads" target="_blank" rel="noopener">İndir →</a>
-    </div>
-
-    <div class="program-card">
-      <div class="program-icon">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 6h20l8 8v28a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" fill="#3AA757"/>
-          <path d="M30 6l8 8h-6a2 2 0 0 1-2-2z" fill="#8FE3A6"/>
-          <text x="24" y="31" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">RAR</text>
-        </svg>
-      </div>
-      <div class="program-name">WinRAR</div>
-      <div class="program-desc">Dosya sıkıştırma ve arşiv açma programı.</div>
-      <span class="program-size">Deneme sürümü</span>
-      <a class="program-btn" href="https://www.win-rar.com/download.html" target="_blank" rel="noopener">İndir →</a>
-    </div>
-
-    <div class="program-card">
-      <div class="program-icon">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 6h20l8 8v28a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" fill="#4C8DFF"/>
-          <path d="M30 6l8 8h-6a2 2 0 0 1-2-2z" fill="#A9C6FF"/>
-          <text x="24" y="31" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">7z</text>
-        </svg>
-      </div>
-      <div class="program-name">7-Zip</div>
-      <div class="program-desc">Açık kaynaklı, yüksek sıkıştırma oranına sahip arşivleyici.</div>
-      <span class="program-size">Ücretsiz</span>
-      <a class="program-btn" href="https://www.7-zip.org/download.html" target="_blank" rel="noopener">İndir →</a>
-    </div>
-
-    <div class="program-card">
-      <div class="program-icon">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="5" width="17" height="17" fill="#F35325"/>
-          <rect x="26" y="5" width="17" height="17" fill="#81BC06"/>
-          <rect x="5" y="26" width="17" height="17" fill="#05A6F0"/>
-          <rect x="26" y="26" width="17" height="17" fill="#FFBA08"/>
-        </svg>
-      </div>
-      <div class="program-name">Microsoft 365</div>
-      <div class="program-desc">Word, Excel, PowerPoint ve diğer Office uygulamaları.</div>
-      <span class="program-size">Abonelik</span>
-      <a class="program-btn" href="https://www.microsoft.com/microsoft-365/download-office" target="_blank" rel="noopener">İndir →</a>
-    </div>
-
-    <div class="program-card">
-      <div class="program-icon">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 4l16 6v12c0 11-7 18-16 22C15 40 8 33 8 22V10z" fill="#0033A0"/>
-          <path d="M24 4l16 6v12c0 11-7 18-16 22z" fill="#5FBAE9" opacity="0.55"/>
-          <path d="M16 24l6 6 11-13" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="program-name">ESET Antivirüs</div>
-      <div class="program-desc">Virüs ve zararlı yazılımlara karşı gerçek zamanlı koruma.</div>
-      <span class="program-size">Deneme sürümü</span>
-      <a class="program-btn" href="https://www.eset.com/int/home/antivirus/download/" target="_blank" rel="noopener">İndir →</a>
-    </div>
-
   </div>
 </main>
 
 <footer>© 2026 Sezgin Tools</footer>
 
 <script>
-  // Page switching
+  // Mobil Menü Aç/Kapat
+  function toggleMenu(){
+    const nav = document.getElementById('nav-links');
+    nav.classList.toggle('open');
+  }
+
+  // Sayfa Değiştirme ve Menü Otomatik Kapatma
   function showPage(name){
     document.getElementById('page-home').classList.toggle('active', name === 'home');
     document.getElementById('page-itbilgi').classList.toggle('active', name === 'itbilgi');
     document.getElementById('page-donanim').classList.toggle('active', name === 'donanim');
     document.getElementById('page-indir').classList.toggle('active', name === 'indir');
+    
     document.getElementById('nav-home').classList.toggle('active', name === 'home');
     document.getElementById('nav-itbilgi').classList.toggle('active', name === 'itbilgi');
     document.getElementById('nav-donanim').classList.toggle('active', name === 'donanim');
     document.getElementById('nav-indir').classList.toggle('active', name === 'indir');
+
+    // Mobilde bir sekmeye basıldığında menüyü kapat
+    const nav = document.getElementById('nav-links');
+    if(nav) nav.classList.remove('open');
+
     window.scrollTo({top:0, behavior:'instant'});
   }
 
-  // Terminal typing/cycling effect — Ağ Tarayıcı & Speedtest demosu
+  // Terminal & Hız Testi
   const networkTools = [
     { cmd: "network-scan", out: "Ağ taranıyor… 24 cihaz bulundu." },
     { cmd: "port-check", out: "22, 80, 443 açık. 8080 kapalı." },
@@ -1306,7 +749,6 @@
     autoTimer = setInterval(cycle, 3200);
   }
 
-  // ---- Gerçek internet hız testi (Cloudflare speed altyapısı üzerinden) ----
   async function measurePing(){
     const rounds = 4;
     let best = Infinity;
@@ -1316,7 +758,7 @@
         await fetch(`https://speed.cloudflare.com/__down?bytes=0&cb=${Math.random()}`, { cache: 'no-store' });
       }catch(e){ throw e; }
       const dt = performance.now() - t0;
-      if(r > 0 && dt < best) best = dt; // ilk istek ısınma turu, ortalamaya katılmaz
+      if(r > 0 && dt < best) best = dt;
     }
     return best === Infinity ? 0 : best;
   }
@@ -1326,7 +768,7 @@
     const res = await fetch(`https://speed.cloudflare.com/__down?bytes=${bytes}&cb=${Math.random()}`, { cache: 'no-store' });
     const buf = await res.arrayBuffer();
     const dt = (performance.now() - t0) / 1000;
-    return (buf.byteLength * 8) / dt / 1_000_000; // Mbps
+    return (buf.byteLength * 8) / dt / 1_000_000;
   }
 
   async function measureUpload(bytes){
@@ -1334,7 +776,7 @@
     const t0 = performance.now();
     await fetch('https://speed.cloudflare.com/__up', { method: 'POST', body: data, cache: 'no-store' });
     const dt = (performance.now() - t0) / 1000;
-    return (bytes * 8) / dt / 1_000_000; // Mbps
+    return (bytes * 8) / dt / 1_000_000;
   }
 
   async function runSpeedTest(){
@@ -1348,12 +790,9 @@
     try{
       const ping = await measurePing();
       setOutput(`Ping: ${ping.toFixed(0)}ms · İndirme test ediliyor…`);
-
       const down = await measureDownload(20_000_000);
       setOutput(`İndirme: ${down.toFixed(1)} Mbps · Yükleme test ediliyor…`);
-
       const up = await measureUpload(8_000_000);
-
       setOutput(`İndirme: ${down.toFixed(1)} Mbps · Yükleme: ${up.toFixed(1)} Mbps · Ping: ${ping.toFixed(0)}ms`);
       refreshStats();
     }catch(err){
